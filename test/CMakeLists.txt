@@ -5,6 +5,7 @@ set(This ExampleTests)
 set(Sources
     TupleTests.cpp
     ColorTests.cpp
+    CanvasTests.cpp
 )
 
 add_executable(${This} ${Sources})

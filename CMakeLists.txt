@@ -16,12 +16,14 @@ set(Headers
     Tuple.hpp
     Helper.hpp
     Color.hpp
+    Canvas.hpp
 )
 
 set(Source
     Tuple.cpp
     Main.cpp
     Color.cpp
+    Canvas.cpp
 )
 
 add_library(${This} STATIC ${Source} ${Headers})
