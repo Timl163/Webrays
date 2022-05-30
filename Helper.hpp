@@ -2,7 +2,7 @@
 #define HELPER_HPP
 
 #include <cmath>
-#include "Example.hpp"
+#include "Tuple.hpp"
 
 class Helper{
     private:

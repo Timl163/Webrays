@@ -3,7 +3,8 @@ cmake_minimum_required(VERSION 3.8)
 set(This ExampleTests)
 
 set(Sources
-    ExampleTests.cpp
+    TupleTests.cpp
+    ColorTests.cpp
 )
 
 add_executable(${This} ${Sources})

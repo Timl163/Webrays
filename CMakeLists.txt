@@ -13,14 +13,20 @@ enable_testing()
 add_subdirectory(googletest)
 
 set(Headers
-    Example.hpp
+    Tuple.hpp
     Helper.hpp
+    Color.hpp
 )
 
 set(Source
-    Example.cpp
+    Tuple.cpp
+    Main.cpp
+    Color.cpp
 )
 
 add_library(${This} STATIC ${Source} ${Headers})
 
 add_subdirectory(test)
+
+add_executable(Main Main.cpp)
+target_link_libraries(Main PUBLIC ${This})
