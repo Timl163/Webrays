@@ -21,7 +21,6 @@ set(Headers
 
 set(Source
     Tuple.cpp
-    Main.cpp
     Color.cpp
     Canvas.cpp
 )
@@ -30,5 +29,6 @@ add_library(${This} STATIC ${Source} ${Headers})
 
 add_subdirectory(test)
 
-add_executable(Main Main.cpp)
-target_link_libraries(Main PUBLIC ${This})
+#add_executable(Main Main.cpp)
+
+#target_link_libraries(Main PUBLIC ${This})

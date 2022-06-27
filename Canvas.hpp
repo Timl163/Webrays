@@ -15,6 +15,8 @@ class Canvas{
 
         Color getPixel(int w, int h);
         void setPixel(int w, int h, Color col);
+        static unsigned char* to_js(Canvas c);
+        
 };
 
 #endif

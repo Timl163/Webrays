@@ -10,7 +10,6 @@ class Tuple {
         float z;
         float w;
 
-        //Tuple();
         Tuple(float x_val, float y_val, float z_val, float w_val);
 
         Tuple operator+( Tuple &other );
