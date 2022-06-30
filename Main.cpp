@@ -6,6 +6,7 @@
 #include "Tuple.hpp"
 #include "Helper.hpp"
 #include "Canvas.hpp"
+#include <chrono>
 
 using emscripten::val;
 
@@ -93,8 +94,9 @@ int main(){
     //ctx.set("fillStyle", "green");
     //ctx.call<void>("fillRect", 10, 10, 150, 100);
 
+    std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
 
-    Canvas c = Canvas(5,3);
+    Canvas c = Canvas(100,100);
     Color c1 = Color(1.5, 0, 0);
     Color c2 = Color(0, 0.5, 0);
     Color c3 = Color(-0.5, 0, 1);
@@ -116,4 +118,10 @@ int main(){
     std::cout << (unsigned int) js[42] << "\n";
     std::cout << (unsigned int) js[43] << "\n";
     std::cout << (unsigned int) js[44] << "\n";
+
+    free(js);
+
+    std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
+    std::cout << "Time difference = " << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count() << "[µs]" << std::endl;
+    std::cout << "Time difference = " << std::chrono::duration_cast<std::chrono::nanoseconds> (end - begin).count() << "[ns]" << std::endl;
 }

@@ -32,7 +32,8 @@ void Canvas::setPixel(int w, int h, Color col){
 }
 
 unsigned char* Canvas::to_js(Canvas c){
-    unsigned char* tmp = (unsigned char*) calloc(c.width*c.height*3, sizeof(unsigned char));
+    //unsigned char* tmp = (unsigned char*) calloc(c.width*c.height*3, sizeof(unsigned char));
+    unsigned char* tmp = new unsigned char [c.width*c.height*3 * sizeof(unsigned char)];
     Color currentcolor = Color(-1,-1,-1);
     for (int i=0; i < c.width*c.height; i++ ){
         currentcolor = (Color)c.data[i];

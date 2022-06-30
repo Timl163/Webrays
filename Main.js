@@ -1666,8 +1666,8 @@ var tempI64;
 // === Body ===
 
 var ASM_CONSTS = {
-  21364: () => { document.getElementById('canvas').id = 'myCanvas' },  
- 21414: ($0) => { var ctx= Module['canvas'].getContext('2d'); var data = ctx.getImageData(0,0,100,100); console.log(data); for (let i = 0; i < data.data.length; i += 4){ data.data[i] = 255; data.data[i+1] = 0; data.data[i+2] = 0; data.data[i+3] = 255; } ctx.putImageData(data,0,0); console.log('Data: ' + HEAP32[$0>>2]); let test = HEAP32[$0>>2]; console.log(test); const bytearray = []; bytearray[0] = 0; bytearray[1] = 0; bytearray[2] = 0; bytearray[3] = 0; for (var index = 0; index < bytearray.length; index ++) { var byte = test & 0xff; bytearray [ index ] = byte; test = (test - byte) / 256; } console.log(bytearray); }
+  21444: () => { document.getElementById('canvas').id = 'myCanvas' },  
+ 21494: ($0) => { var ctx= Module['canvas'].getContext('2d'); var data = ctx.getImageData(0,0,100,100); console.log(data); for (let i = 0; i < data.data.length; i += 4){ data.data[i] = 255; data.data[i+1] = 0; data.data[i+2] = 0; data.data[i+3] = 255; } ctx.putImageData(data,0,0); console.log('Data: ' + HEAP32[$0>>2]); let test = HEAP32[$0>>2]; console.log(test); const bytearray = []; bytearray[0] = 0; bytearray[1] = 0; bytearray[2] = 0; bytearray[3] = 0; for (var index = 0; index < bytearray.length; index ++) { var byte = test & 0xff; bytearray [ index ] = byte; test = (test - byte) / 256; } console.log(bytearray); }
 };
 
 
@@ -1819,6 +1819,15 @@ var ASM_CONSTS = {
       abort('Assertion failed: ' + UTF8ToString(condition) + ', at: ' + [filename ? UTF8ToString(filename) : 'unknown filename', line, func ? UTF8ToString(func) : 'unknown function']);
     }
 
+  function __emscripten_date_now() {
+      return Date.now();
+    }
+
+  var nowIsMonotonic = true;;
+  function __emscripten_get_now_is_monotonic() {
+      return nowIsMonotonic;
+    }
+
   function _abort() {
       abort('native code called abort()');
     }
@@ -1854,6 +1863,14 @@ var ASM_CONSTS = {
       if (!ASM_CONSTS.hasOwnProperty(code)) abort('No EM_ASM constant found at address ' + code);
       return ASM_CONSTS[code].apply(null, args);
     }
+
+  var _emscripten_get_now;if (ENVIRONMENT_IS_NODE) {
+    _emscripten_get_now = () => {
+      var t = process['hrtime']();
+      return t[0] * 1e3 + t[1] / 1e6;
+    };
+  } else _emscripten_get_now = () => performance.now();
+  ;
 
   function _emscripten_memcpy_big(dest, src, num) {
       HEAPU8.copyWithin(dest, src, src + num);
@@ -4911,8 +4928,11 @@ function checkIncomingModuleAPI() {
 }
 var asmLibraryArg = {
   "__assert_fail": ___assert_fail,
+  "_emscripten_date_now": __emscripten_date_now,
+  "_emscripten_get_now_is_monotonic": __emscripten_get_now_is_monotonic,
   "abort": _abort,
   "emscripten_asm_const_int": _emscripten_asm_const_int,
+  "emscripten_get_now": _emscripten_get_now,
   "emscripten_memcpy_big": _emscripten_memcpy_big,
   "emscripten_resize_heap": _emscripten_resize_heap,
   "emscripten_set_canvas_element_size": _emscripten_set_canvas_element_size,
